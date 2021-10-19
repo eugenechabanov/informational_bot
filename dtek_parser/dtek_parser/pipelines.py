@@ -87,6 +87,6 @@ class DtekParserPipeline:
         # if item['data-id']
         self.store_item(item)
         print(item.works_type)
-        # print('########1')
+        print('########')
         # todo set up archive table and transfer items there after their action time is expired
         return item
