@@ -93,7 +93,6 @@ def main():
             # dumping page into cache file
             pickle.dump(response_text, open("cache/page.pkl", "wb"))
             logging.info('Page saved to cache.')
-        
         else:
             logging.info('There was an error opening page. Here is the response text:\n',
                          BeautifulSoup(response_text, "html.parser").prettify())
