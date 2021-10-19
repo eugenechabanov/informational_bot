@@ -19,7 +19,6 @@ jobs:
         uses: suo/flake8-github-action@releases/v1
         with:
           checkName: 'flake8_py3'   # NOTE: this needs to be the same as the job name
-          with:
-            max-line-length: "100"
+          max-line-length: "100"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
