@@ -3,10 +3,6 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
-
-# useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
-
 # import sys
 # print(sys.executable)
 import mysql.connector
@@ -14,11 +10,15 @@ from mysql.connector import errorcode
 
 
 class DtekParserPipeline:
+    """Gets items from DTEK site and stores them in database"""
+
     def __init__(self):
         self.create_connection()
         self.create_table()
 
     def create_connection(self):
+        """Basic database connection setup"""
+
         self.connection = mysql.connector.connect(
             host='localhost',
             user='serviceuser',
@@ -29,6 +29,8 @@ class DtekParserPipeline:
         print('Connected to the database.')
 
     def create_table(self):
+        """Creating table if it is not there. Otherwise, output a message and continue"""
+
         items_table = (
             "CREATE TABLE `info_bot`.`outages` ("
             "`id` int NOT NULL AUTO_INCREMENT,"
@@ -62,6 +64,8 @@ class DtekParserPipeline:
             print("Table created")
 
     def store_item(self, item):
+        """Store passed item to database"""
+
         self.cursor.execute("INSERT INTO outages "
                             "(outage_date, turn_on_date, area, all_towns_and_streets, works_type, "
                             "posting_date, outage_schedule, status ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
@@ -78,7 +82,7 @@ class DtekParserPipeline:
         self.connection.commit()
         print("Item inserted")
 
-    def process_item(self, item, spider):
+    def process_item(self, item):
         # todo get item- data-id
         # if item['data-id']
         self.store_item(item)

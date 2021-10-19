@@ -3,12 +3,13 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
 from dataclasses import dataclass
 
 
 @dataclass
 class DtekParserItem:
+    """Dataclass for parsed item from DTEK site"""
+
     outage_date: str
     turn_on_date: str
     area: str

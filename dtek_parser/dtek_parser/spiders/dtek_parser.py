@@ -1,9 +1,9 @@
-from ..items import DtekParserItem
 import logging
 import os
 import scrapy
 import w3lib.html
 
+from ..items import DtekParserItem
 
 folders_to_create = ['log']
 for folder in folders_to_create:  # creating all standard folders if they don't exist already
@@ -43,6 +43,8 @@ class DTEKSpider(scrapy.Spider):
 
     @classmethod
     def get_user_streets(cls, all_towns_and_streets, user_town):
+        """Getting found_town_and_streets from a complicated string from parsed html"""
+
         all_towns_and_streets = all_towns_and_streets.split('\n')
         found_town_and_streets = ''
         for town in all_towns_and_streets:
@@ -54,8 +56,10 @@ class DTEKSpider(scrapy.Spider):
         return found_town_and_streets
 
     def parse(self, response):
+        """Parsing DTEK page and yielding an item to pipelines"""
+
         user_town = self.LOCATIONS[0]
-        user_area = self.AREAS[0]
+        # user_area = self.AREAS[0]
         rows = response.xpath("//tr['data-id'][position()>1]")
         for row in rows:
             towns = row.xpath('td//b/text()')        # type -> Selector
