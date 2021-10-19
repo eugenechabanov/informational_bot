@@ -70,8 +70,8 @@ class DTEKSpider(scrapy.Spider):
             cols = row.xpath('td')
 
             list_of_cols = [w3lib.html.remove_tags(col.get()).strip() for col in cols]
-            outage_date, turn_on_date, area, all_towns_and_streets, works_type, posting_date, outage_schedule, status= \
-                list_of_cols
+            outage_date, turn_on_date, area, all_towns_and_streets, works_type, posting_date, \
+                outage_schedule, status = list_of_cols
 
             streets = self.get_user_streets(all_towns_and_streets, user_town)
 
