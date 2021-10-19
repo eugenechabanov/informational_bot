@@ -82,7 +82,6 @@ class DtekParserPipeline:
         self.connection.commit()
         print("Item inserted")
 
-
     def process_item(self, item):
         # todo get item- data-id
         # if item['data-id']
