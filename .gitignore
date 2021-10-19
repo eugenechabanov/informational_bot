@@ -1,5 +1,5 @@
 .idea
-cache
+cache/
 dtek_parser/log
-log
+log/
 venv
