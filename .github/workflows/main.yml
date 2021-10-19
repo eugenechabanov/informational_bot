@@ -30,7 +30,7 @@ jobs:
           use-isort: false
           extra-pylint-options: ""
           extra-pycodestyle-options: "--max-line-length=120 --exclude=Webpage_Parsers,__init__.py"
-          extra-flake8-options: "--max-line-length=120 --exclude=Webpage_Parsers,__init__.py"
+          extra-flake8-options: "--max-line-length=120 --exclude=Webpage_Parsers,__init__.py --ignore=F0010"
           extra-black-options: ""
           extra-mypy-options: ""
           extra-isort-options: ""
